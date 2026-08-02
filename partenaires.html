@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>URGENCE 13 SIMULATION — Équipe & Partenaires</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800;900&family=Outfit:wght@600;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        sunset: {
+                            dark: '#0B0713',
+                            card: '#160E24',
+                            magenta: '#D946EF',
+                            coral: '#FF5E36',
+                            gold: '#FBBF24',
+                            blue: '#3B82F6',
+                            red: '#EF4444',
+                            green: '#10B981'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                        display: ['Outfit', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #0B0713;
+            color: #FFFFFF;
+            overflow-x: hidden;
+        }
+
+        .sunset-bg {
+            background: 
+                radial-gradient(circle at 50% 0%, rgba(255, 94, 54, 0.25) 0%, transparent 50%),
+                radial-gradient(circle at 85% 30%, rgba(217, 70, 239, 0.2) 0%, transparent 45%),
+                radial-gradient(circle at 15% 70%, rgba(239, 68, 68, 0.18) 0%, transparent 50%);
+        }
+
+        .sunset-gradient-text {
+            background: linear-gradient(135deg, #FF9E36 0%, #FF5E36 50%, #D946EF 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .sunset-btn {
+            background: linear-gradient(90deg, #FF5E36 0%, #D946EF 100%);
+            transition: all 0.3s ease;
+        }
+
+        .sunset-btn:hover {
+            opacity: 0.95;
+            box-shadow: 0 0 25px rgba(255, 94, 54, 0.5);
+        }
+
+        .glass-card {
+            background: rgba(22, 14, 36, 0.9);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+        }
+    </style>
+</head>
+<body class="font-sans antialiased sunset-bg min-h-screen flex flex-col justify-between">
+
+    <!-- Navigation Bar -->
+    <header class="sticky top-0 z-40 px-4 lg:px-8 py-4">
+        <div class="max-w-6xl mx-auto glass-card rounded-2xl px-6 py-4 flex items-center justify-between shadow-xl">
+            <a href="index.html" class="flex items-center gap-3">
+                <div class="w-12 h-12 rounded-xl sunset-btn flex items-center justify-center font-display font-black text-white text-2xl shadow-lg">
+                    13
+                </div>
+                <div class="flex flex-col">
+                    <span class="font-display font-black text-xl tracking-wide text-white">
+                        URGENCE 13
+                    </span>
+                    <span class="text-xs text-sunset-coral font-bold uppercase tracking-widest">Simulation</span>
+                </div>
+            </a>
+
+            <nav class="hidden md:flex items-center gap-2">
+                <a href="index.html" class="px-4 py-2 text-sm font-bold text-gray-100 hover:text-sunset-coral transition-colors">Accueil</a>
+                <a href="index.html#galerie" class="px-4 py-2 text-sm font-bold text-gray-100 hover:text-sunset-coral transition-colors">Galerie</a>
+                <a href="index.html#factions" class="px-4 py-2 text-sm font-bold text-gray-100 hover:text-sunset-coral transition-colors">Métiers</a>
+                <a href="partenaires.html" class="px-4 py-2 text-sm font-bold text-sunset-coral transition-colors">Partenaires</a>
+            </nav>
+
+            <a href="https://discord.gg/hCYVWdAhyt" target="_blank" rel="noopener" class="px-5 py-2.5 rounded-xl sunset-btn text-white font-display font-black text-sm uppercase tracking-wider flex items-center gap-2 shadow-lg">
+                <i class="fa-brands fa-discord text-base"></i> Discord
+            </a>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="flex-grow max-w-6xl mx-auto px-4 lg:px-8 py-16 space-y-16">
+        
+        <div class="text-center">
+            <span class="text-sunset-coral font-black uppercase text-xs tracking-widest">ENCADREMENT ET COLLABORATIONS</span>
+            <h1 class="font-display font-black text-4xl sm:text-5xl text-white mt-1">L'Équipe & Nos Partenaires</h1>
+            <p class="text-sm text-orange-300 mt-3 max-w-2xl mx-auto">Découvrez l'ensemble de l'équipe qui donne vie au serveur.</p>
+        </div>
+
+        <div class="grid sm:grid-cols-2 md:grid-cols-3 gap-8">
+            <div class="glass-card p-8 rounded-3xl border border-white/15 text-center space-y-4 shadow-xl">
+                <div class="w-24 h-24 mx-auto rounded-full overflow-hidden border-2 border-sunset-gold shadow-lg">
+                    <img src="https://i.goopics.net/l9mp92.png" alt="Direction Générale" class="w-full h-full object-cover">
+                </div>
+                <h3 class="font-display font-bold text-xl text-white">DIRECTION GENERALE</h3>
+                <p class="text-xs text-sunset-gold font-bold uppercase tracking-wider">Fondation & Projet</p>
+                <p class="text-xs text-gray-300 leading-relaxed">Supervision globale du serveur, gestion des scripts et orientation stratégique de la simulation.</p>
+                <div class="pt-2">
+                    <a href="https://discord.gg/hCYVWdAhyt" target="_blank" rel="noopener" class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-indigo-600/35 hover:bg-indigo-600/60 text-indigo-300 border border-indigo-500/40 text-xs font-bold transition-all">
+                        <i class="fa-brands fa-discord"></i> Contacter
+                    </a>
+                </div>
+            </div>
+
+            <div class="glass-card p-8 rounded-3xl border border-white/15 text-center space-y-4 shadow-xl">
+                <div class="w-24 h-24 mx-auto rounded-full overflow-hidden border-2 border-sunset-gold shadow-lg">
+                    <img src="https://i.goopics.net/l9mp92.png" alt="EQUIPE TECHNIQUE" class="w-full h-full object-cover">
+                </div>
+                <h3 class="font-display font-bold text-xl text-white">EQUIPE TECHNIQUE</h3>
+                <p class="text-xs text-gray-300 leading-relaxed">L'équipe technique assure le développement, la maintenance et l'amélioration des systèmes et scripts du serveur afin de garantir une expérience de jeu stable et de qualité.</p>
+                <div class="pt-2">
+                    <a href="https://discord.gg/hCYVWdAhyt" target="_blank" rel="noopener" class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-indigo-600/35 hover:bg-indigo-600/60 text-indigo-300 border border-indigo-500/40 text-xs font-bold transition-all">
+                        <i class="fa-brands fa-discord"></i> Contacter
+                    </a>
+                </div>
+            </div>
+
+            <div class="glass-card p-8 rounded-3xl border border-white/15 text-center space-y-4 shadow-xl">
+                <div class="w-24 h-24 mx-auto rounded-full overflow-hidden border-2 border-blue-500 shadow-lg">
+                    <img src="https://i.goopics.net/l9mp92.png" alt="Équipe de Modération" class="w-full h-full object-cover">
+                </div>
+                <h3 class="font-display font-bold text-xl text-white">EQUIPE STAFF</h3>
+                <p class="text-xs text-blue-400 font-bold uppercase tracking-wider">Support & Whitelist</p>
+                <p class="text-xs text-gray-300 leading-relaxed">Traitement des dossiers de candidature, écoute de la communauté et modération sur Discord.</p>
+                <div class="pt-2">
+                    <a href="https://discord.gg/hCYVWdAhyt" target="_blank" rel="noopener" class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-indigo-600/35 hover:bg-indigo-600/60 text-indigo-300 border border-indigo-500/40 text-xs font-bold transition-all">
+                        <i class="fa-brands fa-discord"></i> Support
+                    </a>
+                </div>
+            </div>
+
+            <div class="glass-card p-8 rounded-3xl border border-white/15 text-center space-y-4 shadow-xl sm:col-span-2 md:col-span-1">
+                <div class="w-24 h-24 mx-auto rounded-full overflow-hidden border-2 border-sunset-magenta shadow-lg">
+                    <img src="https://i.goopics.net/l9mp92.png" alt="Réseau Partenaire" class="w-full h-full object-cover">
+                </div>
+                <h3 class="font-display font-bold text-xl text-white">PARTENAIRE</h3>
+                <p class="text-xs text-sunset-magenta font-bold uppercase tracking-wider">partenaire</p>
+                <p class="text-xs text-gray-300 leading-relaxed">Partenariats avec les créateurs de contenu et structures associées pour dynamiser le roleplay.</p>
+                <div class="pt-2">
+                    <a href="https://discord.gg/hCYVWdAhyt" target="_blank" rel="noopener" class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-indigo-600/35 hover:bg-indigo-600/60 text-indigo-300 border border-indigo-500/40 text-xs font-bold transition-all">
+                        <i class="fa-brands fa-discord"></i> Rejoindre
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section Devenir Partenaire -->
+        <div class="glass-card p-8 sm:p-12 rounded-3xl border border-sunset-coral/40 text-center space-y-6 max-w-3xl mx-auto shadow-2xl">
+            <span class="bg-sunset-coral/20 text-sunset-coral border border-sunset-coral/40 font-black text-xs uppercase px-4 py-1.5 rounded-full tracking-widest inline-block">
+                COLLABORATION
+            </span>
+            <h2 class="font-display font-black text-3xl text-white">Vous souhaitez devenir partenaire ?</h2>
+            <p class="text-sm text-gray-300 leading-relaxed">
+                Vous représentez une structure, un serveur ou êtes créateur de contenu et vous souhaitez vous associer avec Urgence 13 Simulation ? Contactez-nous directement sur notre serveur Discord pour en discuter avec l'équipe.
+            </p>
+            <div>
+                <a href="https://discord.gg/hCYVWdAhyt" target="_blank" rel="noopener" class="inline-flex items-center gap-2 px-8 py-4 rounded-xl sunset-btn text-white font-display font-black text-sm uppercase tracking-wider shadow-xl">
+                    <i class="fa-brands fa-discord text-lg"></i> Proposer un Partenariat
+                </a>
+            </div>
+        </div>
+
+        <div class="text-center">
+            <a href="index.html" class="px-8 py-4 rounded-xl sunset-btn text-white font-display font-black text-base uppercase tracking-wider shadow-xl flex items-center gap-2">
+                <i class="fa-solid fa-arrow-left"></i> Retour à l'accueil
+            </a>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-white/10 py-8 px-4 text-center bg-[#08050e]">
+        <div class="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div class="flex items-center gap-2">
+                <div class="w-8 h-8 rounded-lg sunset-btn flex items-center justify-center font-display font-black text-white text-sm">
+                    13
+                </div>
+                <span class="font-display font-black text-base text-white">URGENCE 13 SIMULATION</span>
+            </div>
+            <p class="text-xs text-gray-400">
+                © 2026 URGENCE 13 SIMULATION. Tous droits réservés.
+            </p>
+        </div>
+    </footer>
+</body>
+</html>
