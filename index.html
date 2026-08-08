@@ -98,6 +98,98 @@
             opacity: 1;
             transform: translateY(0);
         }
+
+        /* ===== Carte d'identité RP — Recto/Verso ===== */
+        .id-scene {
+            perspective: 2200px;
+        }
+
+        .id-flip {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 1.586 / 1;
+            transition: transform 0.9s cubic-bezier(0.4, 0.2, 0.2, 1);
+            transform-style: preserve-3d;
+        }
+
+        .id-flip.flipped {
+            transform: rotateY(180deg);
+        }
+
+        .id-face {
+            position: absolute;
+            inset: 0;
+            backface-visibility: hidden;
+            -webkit-backface-visibility: hidden;
+            border-radius: 14px;
+            overflow: hidden;
+            box-shadow: 0 20px 45px -10px rgba(0,0,0,0.6), 0 0 0 1px rgba(255,255,255,0.08);
+        }
+
+        .id-face-back {
+            transform: rotateY(180deg);
+        }
+
+        .id-guilloche {
+            background-image:
+                repeating-linear-gradient(115deg, rgba(0,38,100,0.06) 0px, rgba(0,38,100,0.06) 1px, transparent 1px, transparent 6px),
+                repeating-linear-gradient(25deg, rgba(0,38,100,0.05) 0px, rgba(0,38,100,0.05) 1px, transparent 1px, transparent 6px);
+        }
+
+        .id-mrz {
+            font-family: 'Courier New', ui-monospace, monospace;
+            letter-spacing: 0.14em;
+        }
+
+        .id-field-value {
+            font-family: 'Courier New', ui-monospace, monospace;
+            border-bottom: 1.5px dashed rgba(0,38,100,0.35);
+        }
+
+        .id-field-value:focus {
+            outline: none;
+            border-bottom-color: #002654;
+            background: rgba(0,38,100,0.05) !important;
+        }
+
+        .id-select-value {
+            font-family: 'Courier New', ui-monospace, monospace;
+            border-bottom: 1.5px dashed rgba(0,38,100,0.35);
+        }
+
+        .id-flag-strip {
+            background: linear-gradient(90deg, #002654 0%, #002654 33%, #FFFFFF 33%, #FFFFFF 66%, #ED2939 66%, #ED2939 100%);
+        }
+
+        /* Neutralise le thème sombre global à l'intérieur de la carte d'identité */
+        .id-face input, .id-face select, .id-face textarea {
+            background: transparent !important;
+            border: none !important;
+            color: #0B1B33 !important;
+            border-radius: 0 !important;
+            box-shadow: none !important;
+            padding-left: 0 !important;
+            padding-right: 0 !important;
+        }
+
+        .id-face input, .id-face select {
+            border-bottom: 1.5px dashed rgba(0,38,100,0.35) !important;
+        }
+
+        .id-face textarea {
+            border: 1px dashed rgba(0,38,100,0.35) !important;
+            padding: 4px 6px !important;
+            border-radius: 6px !important;
+        }
+
+        .id-face input::placeholder, .id-face textarea::placeholder {
+            color: rgba(11,27,51,0.35) !important;
+        }
+
+        .id-face input:focus, .id-face select:focus, .id-face textarea:focus {
+            border-bottom-color: #002654 !important;
+            background: rgba(0,38,100,0.05) !important;
+        }
     </style>
 </head>
 <body class="font-sans antialiased sunset-bg min-h-screen flex flex-col justify-between">
@@ -192,6 +284,39 @@
             </div>
         </section>
 
+        <section id="actualites" class="max-w-6xl mx-auto px-4 lg:px-8 py-12 border-t border-white/10 reveal">
+            <div class="text-center mb-10">
+                <span class="text-sunset-coral font-black uppercase text-xs tracking-widest">Dernières Nouvelles</span>
+                <h2 class="font-display font-black text-4xl text-white mt-1">ACTUALITÉS DU SERVEUR</h2>
+                <p class="text-sm text-gray-300 mt-2">Restez informé des dernières mises à jour, événements et annonces officielles.</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-6">
+                <div class="glass-card rounded-3xl overflow-hidden border border-white/15 flex flex-col justify-between hover:border-sunset-coral transition-all duration-300 shadow-xl group">
+                    <div class="h-48 overflow-hidden relative border-b border-white/10">
+                        <img src="https://i.goopics.net/ctvdk8.png" alt="Mise à jour" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        <div class="absolute top-4 left-4">
+                            <span class="bg-sunset-coral/90 backdrop-blur-md text-white text-xs font-extrabold px-3 py-1 rounded-full border border-sunset-coral/40 shadow-lg">Mise à jour</span>
+                        </div>
+                    </div>
+                    <div class="p-6 flex-grow flex flex-col justify-between space-y-4">
+                        <div class="space-y-2">
+                            <div class="flex items-center justify-between text-xs text-gray-400 font-semibold mb-1">
+                                <span><i class="fa-regular fa-calendar mr-1"></i> 09/08/2026</span>
+                            </div>
+                            <h3 class="font-display font-black text-xl text-white">🪪 Les demandes de cartes d’identité sont ouvertes</h3>
+                            <p class="text-xs text-gray-200 leading-relaxed font-medium">
+                                Les service de la mairie sont au travaille pour repondre a vos demandes Remplissez votre carte d'inteité en bas de page !
+                            </p>
+                        </div>
+                        <div class="pt-4 border-t border-white/10 flex items-center justify-between text-xs">
+                            <span class="text-gray-400 font-semibold"><i class="fa-solid fa-user-shield mr-1 text-sunset-gold"></i> Staff Urgence 13</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <!-- Factions / Métiers Section -->
         <section id="factions" class="max-w-6xl mx-auto px-4 lg:px-8 py-12 border-t border-white/10 reveal">
             <div class="text-center mb-10">
@@ -248,7 +373,7 @@
 
                 <div class="glass-card rounded-3xl overflow-hidden border-2 border-sunset-gold/30 hover:border-sunset-gold transition-all shadow-2xl flex flex-col">
                     <div class="h-48 overflow-hidden relative">
-                        <img src="https://i.goopics.net/i961ps.png" alt="Citoyens Roleplay" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500">
+                        <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=800&q=80" alt="Citoyens Roleplay" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500">
                         <div class="absolute top-4 left-4 bg-amber-500/90 text-black p-3 rounded-xl shadow-lg border border-amber-300/40">
                             <i class="fa-solid fa-users text-xl"></i>
                         </div>
@@ -470,62 +595,151 @@
                 </div>
 
                 <div class="lg:col-span-7">
-                    <div class="glass-card p-8 rounded-3xl border border-white/20 shadow-2xl space-y-6">
-                        <div class="border-b border-white/10 pb-4">
-                            <h3 class="font-display font-black text-2xl text-white flex items-center gap-2">
-                                <i class="fa-solid fa-clipboard-list text-sunset-coral"></i> Dossier de Candidature
-                            </h3>
-                            <p class="text-xs text-gray-300 mt-1">Remplissez soigneusement tous les champs pour envoyer votre dossier au Staff.</p>
+                    <div class="text-center mb-4">
+                        <span class="inline-flex items-center gap-2 text-xs font-black uppercase tracking-widest text-sunset-gold">
+                            <i class="fa-solid fa-id-card"></i> Pièce d'identité du personnage — Simulation RP
+                        </span>
+                        <p class="text-xs text-gray-400 mt-1">Document fictif généré pour les besoins du roleplay. Aucune valeur légale.</p>
+                    </div>
+
+                    <form id="wlForm" onsubmit="submitWLForm(event)">
+                        <div class="id-scene mx-auto" style="max-width: 560px;">
+                            <div id="idFlip" class="id-flip">
+
+                                <!-- ===== RECTO ===== -->
+                                <div class="id-face id-face-front bg-[#eef3f9]">
+                                    <div class="id-flag-strip h-2 w-full"></div>
+                                    <div class="id-guilloche absolute inset-0"></div>
+
+                                    <div class="relative h-full flex flex-col text-[#0B1B33] px-4 sm:px-6 py-3">
+                                        <!-- Header -->
+                                        <div class="flex items-start justify-between">
+                                            <div>
+                                                <p class="font-display font-black text-xs sm:text-sm tracking-wide leading-tight">RÉPUBLIQUE FRANÇAISE</p>
+                                                <p class="font-display font-black text-lg sm:text-2xl leading-tight" style="color:#002654;">CARTE D'IDENTITÉ</p>
+                                                <p class="text-[9px] sm:text-[10px] font-bold uppercase tracking-widest text-[#ED2939]">Document de simulation — Urgence 13</p>
+                                            </div>
+                                            <div class="text-right shrink-0 pl-2">
+                                                <div class="text-3xl sm:text-4xl font-display font-black" style="color:#002654;">FR</div>
+                                                <p id="idCardNumber" class="id-mrz text-[9px] sm:text-[10px] text-[#0B1B33]/70">N° 00AA00000</p>
+                                            </div>
+                                        </div>
+
+                                        <!-- Body -->
+                                        <div class="flex-1 grid grid-cols-[1fr_auto] gap-3 sm:gap-4 mt-2">
+                                            <div class="space-y-1.5 text-[11px] sm:text-xs">
+                                                <div>
+                                                    <label class="block text-[8px] sm:text-[9px] font-bold uppercase tracking-wider text-[#0B1B33]/60">Nom de naissance *</label>
+                                                    <input type="text" id="charLastName" required placeholder="ROSSI" oninput="this.value=this.value.toUpperCase(); updateMRZ();" class="id-field-value w-full bg-transparent py-0.5 font-bold text-sm tracking-wide">
+                                                </div>
+                                                <div>
+                                                    <label class="block text-[8px] sm:text-[9px] font-bold uppercase tracking-wider text-[#0B1B33]/60">Prénom(s) *</label>
+                                                    <input type="text" id="charFirstName" required placeholder="Lucas" oninput="updateMRZ();" class="id-field-value w-full bg-transparent py-0.5 font-semibold text-sm">
+                                                </div>
+                                                <div class="grid grid-cols-2 gap-2">
+                                                    <div>
+                                                        <label class="block text-[8px] sm:text-[9px] font-bold uppercase tracking-wider text-[#0B1B33]/60">Né(e) le *</label>
+                                                        <input type="date" id="charDOB" required oninput="updateMRZ();" class="id-field-value w-full bg-transparent py-0.5 font-semibold text-[11px] sm:text-xs">
+                                                    </div>
+                                                    <div>
+                                                        <label class="block text-[8px] sm:text-[9px] font-bold uppercase tracking-wider text-[#0B1B33]/60">Sexe *</label>
+                                                        <select id="charSexe" required class="id-select-value w-full bg-transparent py-0.5 font-semibold text-[11px] sm:text-xs">
+                                                            <option value="M">M</option>
+                                                            <option value="F">F</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="grid grid-cols-2 gap-2">
+                                                    <div>
+                                                        <label class="block text-[8px] sm:text-[9px] font-bold uppercase tracking-wider text-[#0B1B33]/60">Lieu de naissance *</label>
+                                                        <input type="text" id="charPOB" required placeholder="Marseille" class="id-field-value w-full bg-transparent py-0.5 font-semibold text-[11px] sm:text-xs">
+                                                    </div>
+                                                    <div>
+                                                        <label class="block text-[8px] sm:text-[9px] font-bold uppercase tracking-wider text-[#0B1B33]/60">Taille</label>
+                                                        <div class="flex items-baseline gap-1">
+                                                            <input type="number" id="charHeight" min="120" max="220" placeholder="178" class="id-field-value w-full bg-transparent py-0.5 font-semibold text-[11px] sm:text-xs">
+                                                            <span class="text-[9px] text-[#0B1B33]/60">cm</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div>
+                                                    <label class="block text-[8px] sm:text-[9px] font-bold uppercase tracking-wider text-[#0B1B33]/60">Nationalité</label>
+                                                    <p class="font-semibold text-[11px] sm:text-xs">Française</p>
+                                                </div>
+                                            </div>
+
+                                            <!-- Photo -->
+                                            <div class="w-20 sm:w-24 shrink-0 flex flex-col items-center gap-1.5">
+                                                <div class="w-20 h-24 sm:w-24 sm:h-28 rounded-md bg-white/70 border border-[#0B1B33]/25 flex items-center justify-center overflow-hidden">
+                                                    <i class="fa-solid fa-user text-3xl sm:text-4xl text-[#0B1B33]/25"></i>
+                                                </div>
+                                                <p class="text-[7px] sm:text-[8px] text-[#0B1B33]/50 uppercase tracking-wider text-center">Photo non fournie</p>
+                                            </div>
+                                        </div>
+
+                                        <!-- MRZ -->
+                                        <div class="border-t border-[#0B1B33]/15 pt-1.5 mt-1">
+                                            <p id="mrzLine1" class="id-mrz text-[9px] sm:text-[11px] leading-tight truncate">IDFRA0000000000000000000000&lt;&lt;</p>
+                                            <p id="mrzLine2" class="id-mrz text-[9px] sm:text-[11px] leading-tight truncate">0000000&lt;0FRA0000000&lt;0&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;0</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- ===== VERSO ===== -->
+                                <div class="id-face id-face-back bg-[#eef3f9]">
+                                    <div class="id-flag-strip h-2 w-full"></div>
+                                    <div class="id-guilloche absolute inset-0"></div>
+
+                                    <div class="relative h-full flex flex-col text-[#0B1B33] px-4 sm:px-6 py-3 overflow-y-auto">
+                                        <p class="font-display font-black text-xs sm:text-sm tracking-widest uppercase mb-1.5" style="color:#002654;">
+                                            <i class="fa-solid fa-clipboard-list mr-1"></i> Dossier de candidature — Verso
+                                        </p>
+
+                                        <div class="grid sm:grid-cols-2 gap-x-3 gap-y-1.5 text-[11px] sm:text-xs">
+                                            <div>
+                                                <label class="block text-[8px] sm:text-[9px] font-bold uppercase tracking-wider text-[#0B1B33]/60">Pseudo Discord *</label>
+                                                <input type="text" id="discordName" required placeholder="JeanProvence#1300" class="id-field-value w-full bg-transparent py-0.5 font-semibold">
+                                            </div>
+                                            <div>
+                                                <label class="block text-[8px] sm:text-[9px] font-bold uppercase tracking-wider text-[#0B1B33]/60">Orientation métier souhaitée *</label>
+                                                <select id="metierRP" required class="id-select-value w-full bg-transparent py-0.5 font-semibold">
+                                                    <option value="Police Nationale">Police Nationale</option>
+                                                    <option value="Marins-Pompiers">Marins-Pompiers</option>
+                                                    <option value="Citoyen / Entreprise">Citoyen / Pôle Emploi</option>
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                        <div class="mt-1.5 text-[11px] sm:text-xs">
+                                            <label class="block text-[8px] sm:text-[9px] font-bold uppercase tracking-wider text-[#0B1B33]/60">Expérience en Roleplay / Simulation *</label>
+                                            <select id="experienceRP" required class="id-select-value w-full bg-transparent py-0.5 font-semibold">
+                                                <option value="Débutant">Débutant (J'apprends les règles)</option>
+                                                <option value="Intermédiaire">Intermédiaire (Déjà joué sur FiveM)</option>
+                                                <option value="Expert">Confirmé (Expérience simulation approfondie)</option>
+                                            </select>
+                                        </div>
+
+                                        <div class="mt-1.5 flex-1 flex flex-col text-[11px] sm:text-xs">
+                                            <label class="block text-[8px] sm:text-[9px] font-bold uppercase tracking-wider text-[#0B1B33]/60">Histoire & Motivations du personnage *</label>
+                                            <textarea id="charStory" rows="3" required placeholder="Présentez brièvement le projet de votre personnage en Provence..." class="id-field-value w-full bg-transparent py-0.5 font-medium flex-1 resize-none"></textarea>
+                                        </div>
+
+                                        <p class="id-mrz text-[8px] sm:text-[9px] text-[#0B1B33]/50 mt-1 text-center">SIMULATION RP · URGENCE 13 · NE VAUT PAS PIÈCE D'IDENTITÉ OFFICIELLE</p>
+                                    </div>
+                                </div>
+
+                            </div>
                         </div>
 
-                        <form id="wlForm" onsubmit="submitWLForm(event)" class="space-y-4">
-                            <div class="grid sm:grid-cols-2 gap-4">
-                                <div>
-                                    <label class="block text-xs font-bold text-gray-200 uppercase tracking-wider mb-2">Pseudo Discord *</label>
-                                    <input type="text" id="discordName" required placeholder="Ex: JeanProvence#1300" class="w-full px-4 py-3 rounded-xl text-sm font-medium">
-                                </div>
-                                <div>
-                                    <label class="block text-xs font-bold text-gray-200 uppercase tracking-wider mb-2">Orientation Métier Souhaitée *</label>
-                                    <select id="metierRP" required class="w-full px-4 py-3 rounded-xl text-sm font-medium">
-                                        <option value="Police Nationale">Police Nationale</option>
-                                        <option value="Marins-Pompiers">Marins-Pompiers</option>
-                                        <option value="Citoyen / Entreprise">Citoyen / Pôle Emploi</option>
-                                    </select>
-                                </div>
-                            </div>
-
-                            <div class="grid sm:grid-cols-2 gap-4">
-                                <div>
-                                    <label class="block text-xs font-bold text-gray-200 uppercase tracking-wider mb-2">Prénom Personnage *</label>
-                                    <input type="text" id="charFirstName" required placeholder="Ex: Lucas" class="w-full px-4 py-3 rounded-xl text-sm font-medium">
-                                </div>
-                                <div>
-                                    <label class="block text-xs font-bold text-gray-200 uppercase tracking-wider mb-2">Nom Personnage *</label>
-                                    <input type="text" id="charLastName" required placeholder="Ex: Rossi" class="w-full px-4 py-3 rounded-xl text-sm font-medium">
-                                </div>
-                            </div>
-
-                            <div>
-                                <label class="block text-xs font-bold text-gray-200 uppercase tracking-wider mb-2">Expérience en Roleplay / Simulation *</label>
-                                <select id="experienceRP" required class="w-full px-4 py-3 rounded-xl text-sm font-medium">
-                                    <option value="Débutant">Débutant (J'apprends les règles)</option>
-                                    <option value="Intermédiaire">Intermédiaire (Déjà joué sur FiveM)</option>
-                                    <option value="Expert">Confirmé (Expérience simulation approfondie)</option>
-                                </select>
-                            </div>
-
-                            <div>
-                                <label class="block text-xs font-bold text-gray-200 uppercase tracking-wider mb-2">Histoire & Motivations du Personnage *</label>
-                                <textarea id="charStory" rows="4" required placeholder="Présentez brièvement le projet de votre personnage en Provence..." class="w-full px-4 py-3 rounded-xl text-sm font-medium"></textarea>
-                            </div>
-
-                            <div class="pt-2">
-                                <button type="submit" id="submitBtn" class="w-full py-4 rounded-xl sunset-btn text-white font-display font-black text-sm uppercase tracking-wider flex items-center justify-center gap-2 shadow-xl transition-all">
-                                    <i class="fa-solid fa-paper-plane"></i> Envoyer ma Candidature Whitelist
-                                </button>
-                            </div>
-                        </form>
-                    </div>
+                        <div class="flex flex-col sm:flex-row items-center justify-center gap-3 mt-6 max-w-[560px] mx-auto">
+                            <button type="button" onclick="flipIdCard()" class="w-full sm:w-auto px-6 py-3.5 rounded-xl glass-card border border-white/20 text-white font-display font-black text-xs uppercase tracking-wider flex items-center justify-center gap-2 hover:border-sunset-gold transition-all">
+                                <i class="fa-solid fa-rotate"></i> Retourner la carte <span class="text-gray-400 font-medium normal-case">(recto / verso)</span>
+                            </button>
+                            <button type="submit" id="submitBtn" class="w-full sm:flex-1 py-3.5 rounded-xl sunset-btn text-white font-display font-black text-xs uppercase tracking-wider flex items-center justify-center gap-2 shadow-xl transition-all">
+                                <i class="fa-solid fa-paper-plane"></i> Envoyer ma Candidature Whitelist
+                            </button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </section>
@@ -577,7 +791,42 @@
             }
         }
 
+        // ===== Carte d'identité RP : flip + MRZ dynamique =====
+        function flipIdCard() {
+            document.getElementById('idFlip').classList.toggle('flipped');
+        }
+
+        function padMRZ(str, len) {
+            str = (str || "").toUpperCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[^A-Z0-9]/g, "<");
+            return (str + "<".repeat(len)).slice(0, len);
+        }
+
+        function updateMRZ() {
+            const last = document.getElementById('charLastName').value || "XXXX";
+            const first = document.getElementById('charFirstName').value || "XXXX";
+            const dob = document.getElementById('charDOB').value;
+            let dobDigits = "000000";
+            if (dob) {
+                const [y, m, d] = dob.split('-');
+                dobDigits = `${y.slice(2)}${m}${d}`;
+            }
+            const line1 = "IDFRA" + padMRZ(last + "<<" + first, 25);
+            const line2 = dobDigits + "9FRA" + padMRZ(first.slice(0,1) + last, 12) + "2";
+            document.getElementById('mrzLine1').textContent = line1;
+            document.getElementById('mrzLine2').textContent = line2;
+        }
+
+        function generateCardNumber() {
+            const letters = "ABCDEFGHJKLMNPQRSTUVWXYZ";
+            const rand = (n) => Array.from({length: n}, () => Math.floor(Math.random() * 10)).join("");
+            const l = () => letters[Math.floor(Math.random() * letters.length)];
+            document.getElementById('idCardNumber').textContent = `N° ${l()}${l()}${rand(9)}`;
+        }
+
         document.addEventListener("DOMContentLoaded", function() {
+            generateCardNumber();
+            updateMRZ();
+
             const reveals = document.querySelectorAll(".reveal");
             const revealOnScroll = function() {
                 reveals.forEach(element => {
@@ -623,6 +872,10 @@
             const metierRP = document.getElementById('metierRP').value;
             const charFirstName = document.getElementById('charFirstName').value.trim();
             const charLastName = document.getElementById('charLastName').value.trim();
+            const charDOB = document.getElementById('charDOB').value;
+            const charPOB = document.getElementById('charPOB').value.trim();
+            const charSexe = document.getElementById('charSexe').value;
+            const charHeight = document.getElementById('charHeight').value;
             const experienceRP = document.getElementById('experienceRP').value;
             const charStory = document.getElementById('charStory').value.trim();
 
@@ -641,6 +894,8 @@
                             { name: "👤 Pseudo Discord", value: `\`${discordName}\``, inline: true },
                             { name: "🎯 Métier Souhaité", value: `\`${metierRP}\``, inline: true },
                             { name: "🏷️ Personnage RP", value: `**${charFirstName} ${charLastName}**`, inline: false },
+                            { name: "🎂 Né(e) le / à", value: `\`${charDOB || "N/A"}\` à \`${charPOB || "N/A"}\``, inline: true },
+                            { name: "🚻 Sexe / Taille", value: `\`${charSexe}\` / \`${charHeight || "N/A"} cm\``, inline: true },
                             { name: "⭐ Expérience RP", value: `\`${experienceRP}\``, inline: true },
                             { name: "📖 Histoire & Motivations", value: charStory, inline: false }
                         ],
@@ -662,6 +917,8 @@
                 if (response.ok || response.type === 'opaque') {
                     showToast("Candidature Envoyée !", "Votre dossier a été transmis avec succès sur le salon Discord.");
                     document.getElementById('wlForm').reset();
+                    generateCardNumber();
+                    updateMRZ();
                 } else {
                     throw new Error("Erreur lors de l'envoi vers le webhook Discord.");
                 }
