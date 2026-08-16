@@ -373,7 +373,7 @@
 
                 <div class="glass-card rounded-3xl overflow-hidden border-2 border-sunset-gold/30 hover:border-sunset-gold transition-all shadow-2xl flex flex-col">
                     <div class="h-48 overflow-hidden relative">
-                        <img src="https://i.goopics.net/i961ps.png" alt="Citoyens Roleplay" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500">
+                        <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=800&q=80" alt="Citoyens Roleplay" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500">
                         <div class="absolute top-4 left-4 bg-amber-500/90 text-black p-3 rounded-xl shadow-lg border border-amber-300/40">
                             <i class="fa-solid fa-users text-xl"></i>
                         </div>
@@ -701,13 +701,38 @@
                                                 <input type="text" id="discordName" required placeholder="JeanProvence#1300" class="id-field-value w-full bg-transparent py-0.5 font-semibold">
                                             </div>
                                             <div>
-                                                <label class="block text-[8px] sm:text-[9px] font-bold uppercase tracking-wider text-[#0B1B33]/60">Orientation métier souhaitée *</label>
-                                                <select id="metierRP" required class="id-select-value w-full bg-transparent py-0.5 font-semibold">
-                                                    <option value="Police Nationale">Police Nationale</option>
-                                                    <option value="Marins-Pompiers">Marins-Pompiers</option>
-                                                    <option value="Citoyen / Entreprise">Citoyen / Pôle Emploi</option>
+                                                <label class="block text-[8px] sm:text-[9px] font-bold uppercase tracking-wider text-[#0B1B33]/60">Âge *</label>
+                                                <input type="number" id="charAge" required min="10" max="99" placeholder="21" class="id-field-value w-full bg-transparent py-0.5 font-semibold">
+                                            </div>
+                                        </div>
+
+                                        <div class="mt-1.5">
+                                            <label class="block text-[8px] sm:text-[9px] font-bold uppercase tracking-wider text-[#0B1B33]/60">Profession ou étude (hors RP) *</label>
+                                            <input type="text" id="charProfession" required placeholder="Étudiant, Développeur, ..." class="id-field-value w-full bg-transparent py-0.5 font-semibold text-[11px] sm:text-xs">
+                                        </div>
+
+                                        <div class="grid sm:grid-cols-2 gap-x-3 gap-y-1.5 mt-1.5 text-[11px] sm:text-xs">
+                                            <div>
+                                                <label class="block text-[8px] sm:text-[9px] font-bold uppercase tracking-wider text-[#0B1B33]/60">Membre des forces de l'ordre / secours (SPV, SPP, Pompier Militaire, AASC) ? *</label>
+                                                <select id="forceOrdre" required onchange="togglePosteField()" class="id-select-value w-full bg-transparent py-0.5 font-semibold">
+                                                    <option value="Non">Non</option>
+                                                    <option value="Oui">Oui</option>
                                                 </select>
                                             </div>
+                                            <div id="posteWrap" class="hidden">
+                                                <label class="block text-[8px] sm:text-[9px] font-bold uppercase tracking-wider text-[#0B1B33]/60">Si oui, précisez le poste</label>
+                                                <input type="text" id="forcePoste" placeholder="Ex : Sapeur-pompier volontaire" class="id-field-value w-full bg-transparent py-0.5 font-semibold">
+                                            </div>
+                                        </div>
+
+                                        <div class="mt-1.5 text-[11px] sm:text-xs">
+                                            <label class="block text-[8px] sm:text-[9px] font-bold uppercase tracking-wider text-[#0B1B33]/60">Pôle souhaité *</label>
+                                            <select id="metierRP" required class="id-select-value w-full bg-transparent py-0.5 font-semibold">
+                                                <option value="force_ordre">Pôle Force de l'Ordre (Police nationale, Gendarmerie nationale, Police municipale)</option>
+                                                <option value="pompier">Pôle Pompier (BMPM / SDIS 13)</option>
+                                                <option value="sante">Pôle Santé (SMUR 13 / SSSM SDIS 13 / SMUR BMPM)</option>
+                                                <option value="civil">Pôle Civil</option>
+                                            </select>
                                         </div>
 
                                         <div class="mt-1.5 text-[11px] sm:text-xs">
@@ -719,12 +744,22 @@
                                             </select>
                                         </div>
 
-                                        <div class="mt-1.5 flex-1 flex flex-col text-[11px] sm:text-xs">
-                                            <label class="block text-[8px] sm:text-[9px] font-bold uppercase tracking-wider text-[#0B1B33]/60">Histoire & Motivations du personnage *</label>
-                                            <textarea id="charStory" rows="3" required placeholder="Présentez brièvement le projet de votre personnage en Provence..." class="id-field-value w-full bg-transparent py-0.5 font-medium flex-1 resize-none"></textarea>
+                                        <div class="mt-1.5">
+                                            <label class="block text-[8px] sm:text-[9px] font-bold uppercase tracking-wider text-[#0B1B33]/60">Quelles sont vos motivations à rejoindre Urgence 13 ? *</label>
+                                            <textarea id="motivations" required rows="2" placeholder="Expliquez vos motivations..." class="w-full bg-transparent text-[11px] sm:text-xs"></textarea>
                                         </div>
 
-                                        <p class="id-mrz text-[8px] sm:text-[9px] text-[#0B1B33]/50 mt-1 text-center">SIMULATION RP · URGENCE 13 · NE VAUT PAS PIÈCE D'IDENTITÉ OFFICIELLE</p>
+                                        <div class="mt-1.5">
+                                            <label class="block text-[8px] sm:text-[9px] font-bold uppercase tracking-wider text-[#0B1B33]/60">Pourquoi vous et pas un autre ? *</label>
+                                            <textarea id="pourquoiVous" required rows="2" placeholder="Ce qui vous démarque..." class="w-full bg-transparent text-[11px] sm:text-xs"></textarea>
+                                        </div>
+
+                                        <div class="mt-1.5">
+                                            <label class="block text-[8px] sm:text-[9px] font-bold uppercase tracking-wider text-[#0B1B33]/60">Pourquoi ce pôle et pas un autre ? *</label>
+                                            <textarea id="pourquoiPole" required rows="2" placeholder="Justifiez votre choix de pôle..." class="w-full bg-transparent text-[11px] sm:text-xs"></textarea>
+                                        </div>
+
+                                        <p class="id-mrz text-[8px] sm:text-[9px] text-[#0B1B33]/50 mt-1.5 text-center">SIMULATION RP · URGENCE 13 · NE VAUT PAS PIÈCE D'IDENTITÉ OFFICIELLE</p>
                                     </div>
                                 </div>
 
@@ -777,6 +812,55 @@
     <!-- Scripts JavaScript -->
     <script>
         const DISCORD_WEBHOOK_URL = "https://discord.com/api/webhooks/1502272288467452035/VahyNFZV6LTB0e52-IFP4Au0sQLSJVK-im88Xq8aDtAyhYEcVBL84QHNpZfqK6xK0gbJ";
+
+        // Formulaire Formspree — envoie un email vers urgence13simulation@gmail.com
+        const FORMSPREE_URL = "https://formspree.io/f/xnpabelw";
+
+        // Soumission directe dans le Google Form (réponses + Google Sheet lié)
+        const GOOGLE_FORM_ACTION_URL = "https://docs.google.com/forms/d/e/1FAIpQLSdbUQc0pDPyr7C37_KHfODkbaTXS09BD_64Dq-8nSs-6nLrwQ/formResponse";
+        const GOOGLE_FORM_ENTRIES = {
+            prenom: "entry.1276825371",
+            age: "entry.784565834",
+            pseudoDiscord: "entry.722072562",
+            profession: "entry.812572518",
+            forceOrdre: "entry.366829906",
+            poste: "entry.1820860920",
+            nomPrenomRP: "entry.1270535212",
+            dateNaissance: "entry.1192168226",
+            lieuNaissance: "entry.47189400",
+            motivations: "entry.1771210384",
+            pourquoiVous: "entry.2059111162",
+            pole: "entry.180753520",
+            pourquoiPole: "entry.1059753282"
+        };
+
+        // Libellés affichés dans le site / Discord / email
+        const POLE_LABELS = {
+            force_ordre: "Pôle Force de l'Ordre (Police nationale, Gendarmerie nationale, Police municipale)",
+            pompier: "Pôle Pompier (BMPM / SDIS 13)",
+            sante: "Pôle Santé (SMUR 13 / SSSM SDIS 13 / SMUR BMPM)",
+            civil: "Pôle Civil"
+        };
+
+        // Libellés EXACTS des options telles qu'écrites dans le Google Form (ne pas modifier sans revérifier le formulaire)
+        const POLE_GFORM_LABELS = {
+            force_ordre: "POLE FORCE DE L'ORDRE (Police nationale, Gendarmerie nationale, police municipale)",
+            pompier: "Pole pompier (bmpm/sdis 13)",
+            sante: "Pole Santé (smur 13 / sssm sdis 13 / smur bmpm)",
+            civil: "Pole civil"
+        };
+
+        function togglePosteField() {
+            const val = document.getElementById('forceOrdre').value;
+            const wrap = document.getElementById('posteWrap');
+            const input = document.getElementById('forcePoste');
+            if (val === 'Oui') {
+                wrap.classList.remove('hidden');
+            } else {
+                wrap.classList.add('hidden');
+                input.value = '';
+            }
+        }
 
         function toggleFaq(id) {
             const content = document.getElementById(`faq-content-${id}`);
@@ -869,6 +953,10 @@
             event.preventDefault();
 
             const discordName = document.getElementById('discordName').value.trim();
+            const charAge = document.getElementById('charAge').value;
+            const charProfession = document.getElementById('charProfession').value.trim();
+            const forceOrdre = document.getElementById('forceOrdre').value;
+            const forcePoste = document.getElementById('forcePoste').value.trim();
             const metierRP = document.getElementById('metierRP').value;
             const charFirstName = document.getElementById('charFirstName').value.trim();
             const charLastName = document.getElementById('charLastName').value.trim();
@@ -877,7 +965,12 @@
             const charSexe = document.getElementById('charSexe').value;
             const charHeight = document.getElementById('charHeight').value;
             const experienceRP = document.getElementById('experienceRP').value;
-            const charStory = document.getElementById('charStory').value.trim();
+            const motivations = document.getElementById('motivations').value.trim();
+            const pourquoiVous = document.getElementById('pourquoiVous').value.trim();
+            const pourquoiPole = document.getElementById('pourquoiPole').value.trim();
+
+            const poleLabel = POLE_LABELS[metierRP] || metierRP;
+            const poleGFormLabel = POLE_GFORM_LABELS[metierRP] || metierRP;
 
             const submitBtn = document.getElementById('submitBtn');
             submitBtn.disabled = true;
@@ -892,12 +985,16 @@
                         color: 16739894,
                         fields: [
                             { name: "👤 Pseudo Discord", value: `\`${discordName}\``, inline: true },
-                            { name: "🎯 Métier Souhaité", value: `\`${metierRP}\``, inline: true },
+                            { name: "🎂 Âge / Profession", value: `\`${charAge || "N/A"} ans\` — \`${charProfession || "N/A"}\``, inline: true },
+                            { name: "🚨 Forces de l'ordre / secours", value: forceOrdre === 'Oui' ? `Oui — \`${forcePoste || "N/A"}\`` : "Non", inline: true },
+                            { name: "🎯 Pôle Souhaité", value: `\`${poleLabel}\``, inline: false },
                             { name: "🏷️ Personnage RP", value: `**${charFirstName} ${charLastName}**`, inline: false },
                             { name: "🎂 Né(e) le / à", value: `\`${charDOB || "N/A"}\` à \`${charPOB || "N/A"}\``, inline: true },
                             { name: "🚻 Sexe / Taille", value: `\`${charSexe}\` / \`${charHeight || "N/A"} cm\``, inline: true },
                             { name: "⭐ Expérience RP", value: `\`${experienceRP}\``, inline: true },
-                            { name: "📖 Histoire & Motivations", value: charStory, inline: false }
+                            { name: "📖 Motivations", value: motivations || "N/A", inline: false },
+                            { name: "🙋 Pourquoi vous et pas un autre ?", value: pourquoiVous || "N/A", inline: false },
+                            { name: "🧭 Pourquoi ce pôle ?", value: pourquoiPole || "N/A", inline: false }
                         ],
                         footer: {
                             text: "Urgence 13 Simulation — Système de Whitelist Automatique"
@@ -907,28 +1004,104 @@
                 ]
             };
 
+            const formspreePayload = {
+                _subject: `Nouvelle candidature Whitelist — ${charFirstName} ${charLastName}`,
+                "Pseudo Discord": discordName,
+                "Âge": charAge,
+                "Profession / Étude": charProfession,
+                "Forces de l'ordre / secours": forceOrdre === 'Oui' ? `Oui — ${forcePoste || "N/A"}` : "Non",
+                "Pôle souhaité": poleLabel,
+                "Nom RP": `${charFirstName} ${charLastName}`,
+                "Date de naissance RP": charDOB,
+                "Lieu de naissance RP": charPOB,
+                "Sexe": charSexe,
+                "Taille": charHeight,
+                "Expérience RP": experienceRP,
+                "Motivations": motivations,
+                "Pourquoi vous et pas un autre": pourquoiVous,
+                "Pourquoi ce pôle": pourquoiPole,
+                message:
+                    `Pseudo Discord : ${discordName}\n` +
+                    `Âge : ${charAge} — Profession/Étude : ${charProfession}\n` +
+                    `Forces de l'ordre/secours : ${forceOrdre === 'Oui' ? `Oui — ${forcePoste || "N/A"}` : "Non"}\n` +
+                    `Pôle souhaité : ${poleLabel}\n` +
+                    `Nom RP : ${charFirstName} ${charLastName}\n` +
+                    `Né(e) le ${charDOB || "N/A"} à ${charPOB || "N/A"} — Sexe : ${charSexe} — Taille : ${charHeight || "N/A"} cm\n` +
+                    `Expérience RP : ${experienceRP}\n\n` +
+                    `Motivations :\n${motivations}\n\n` +
+                    `Pourquoi vous et pas un autre :\n${pourquoiVous}\n\n` +
+                    `Pourquoi ce pôle :\n${pourquoiPole}`
+            };
+
+            const googleFormBody = new URLSearchParams();
+            googleFormBody.append(GOOGLE_FORM_ENTRIES.prenom, charFirstName);
+            googleFormBody.append(GOOGLE_FORM_ENTRIES.age, charAge);
+            googleFormBody.append(GOOGLE_FORM_ENTRIES.pseudoDiscord, discordName);
+            googleFormBody.append(GOOGLE_FORM_ENTRIES.profession, charProfession);
+            googleFormBody.append(GOOGLE_FORM_ENTRIES.forceOrdre, forceOrdre);
+            googleFormBody.append(GOOGLE_FORM_ENTRIES.poste, forcePoste || "N/A");
+            googleFormBody.append(GOOGLE_FORM_ENTRIES.nomPrenomRP, `${charFirstName} ${charLastName}`);
+            googleFormBody.append(GOOGLE_FORM_ENTRIES.dateNaissance, charDOB);
+            googleFormBody.append(GOOGLE_FORM_ENTRIES.lieuNaissance, charPOB);
+            googleFormBody.append(GOOGLE_FORM_ENTRIES.motivations, motivations);
+            googleFormBody.append(GOOGLE_FORM_ENTRIES.pourquoiVous, pourquoiVous);
+            googleFormBody.append(GOOGLE_FORM_ENTRIES.pole, poleGFormLabel);
+            googleFormBody.append(GOOGLE_FORM_ENTRIES.pourquoiPole, pourquoiPole);
+            // Requis pour les formulaires à sections multiples : indique que toutes les pages ont été "visitées"
+            googleFormBody.append('pageHistory', '0,1,2,3,4');
+
+            let discordOk = false;
+            let mailOk = false;
+            let gformOk = false;
+
             try {
                 const response = await fetch(DISCORD_WEBHOOK_URL, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(discordPayload)
                 });
-
-                if (response.ok || response.type === 'opaque') {
-                    showToast("Candidature Envoyée !", "Votre dossier a été transmis avec succès sur le salon Discord.");
-                    document.getElementById('wlForm').reset();
-                    generateCardNumber();
-                    updateMRZ();
-                } else {
-                    throw new Error("Erreur lors de l'envoi vers le webhook Discord.");
-                }
+                discordOk = response.ok || response.type === 'opaque';
             } catch (error) {
-                console.error(error);
-                showToast("Erreur d'envoi", "Impossible de joindre le salon Discord.", true);
-            } finally {
-                submitBtn.disabled = false;
-                submitBtn.innerHTML = '<i class="fa-solid fa-paper-plane"></i> Envoyer ma Candidature Whitelist';
+                console.error("Erreur webhook Discord :", error);
             }
+
+            try {
+                const mailResponse = await fetch(FORMSPREE_URL, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+                    body: JSON.stringify(formspreePayload)
+                });
+                mailOk = mailResponse.ok;
+                if (!mailOk) console.error("Erreur Formspree :", await mailResponse.json().catch(() => ({})));
+            } catch (error) {
+                console.error("Erreur envoi mail :", error);
+            }
+
+            try {
+                // Google Forms ne renvoie pas de CORS lisible (mode no-cors) : on considère
+                // la soumission réussie si aucune erreur réseau n'est levée.
+                await fetch(GOOGLE_FORM_ACTION_URL, {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    body: googleFormBody
+                });
+                gformOk = true;
+            } catch (error) {
+                console.error("Erreur envoi Google Form :", error);
+            }
+
+            if (discordOk || mailOk || gformOk) {
+                showToast("Candidature Envoyée !", "Votre dossier a été transmis avec succès.");
+                document.getElementById('wlForm').reset();
+                generateCardNumber();
+                updateMRZ();
+                togglePosteField();
+            } else {
+                showToast("Erreur d'envoi", "Impossible de transmettre votre candidature. Réessayez plus tard.", true);
+            }
+
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = '<i class="fa-solid fa-paper-plane"></i> Envoyer ma Candidature Whitelist';
         }
     </script>
 </body>
