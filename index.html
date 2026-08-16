@@ -811,7 +811,7 @@
 
     <!-- Scripts JavaScript -->
     <script>
-        const DISCORD_WEBHOOK_URL = "https://discord.com/api/webhooks/1502272288467452035/VahyNFZV6LTB0e52-IFP4Au0sQLSJVK-im88Xq8aDtAyhYEcVBL84QHNpZfqK6xK0gbJ";
+        const DISCORD_WEBHOOK_URL = "https://discord.com/api/webhooks/1538636323282354266/9DCou8WDLA8_sUbFB9gqbgg2Q06MbWy7qEx5xH7JqfIEZ-nYeoAToYD7TczAmbIW6Nwd";
 
         // Formulaire Formspree — envoie un email vers urgence13simulation@gmail.com
         const FORMSPREE_URL = "https://formspree.io/f/xnpabelw";
@@ -849,6 +849,18 @@
             sante: "Pole Santé (smur 13 / sssm sdis 13 / smur bmpm)",
             civil: "Pole civil"
         };
+
+        // Habillage visuel de l'embed Discord selon le pôle choisi
+        const POLE_STYLE = {
+            force_ordre: { color: 0x3B82F6, emoji: "🚔", short: "Force de l'Ordre" },
+            pompier:     { color: 0xEF4444, emoji: "🚒", short: "Pompier" },
+            sante:       { color: 0x10B981, emoji: "🚑", short: "Santé" },
+            civil:       { color: 0xFBBF24, emoji: "🧑‍💼", short: "Civil" }
+        };
+
+        // Logo / bannière affichés dans l'embed (remplaçables par vos propres visuels)
+        const DISCORD_EMBED_THUMBNAIL = "https://i.goopics.net/lg99dh.png";
+        const DISCORD_EMBED_BANNER = "https://i.goopics.net/9lj9f7.png";
 
         function togglePosteField() {
             const val = document.getElementById('forceOrdre').value;
@@ -971,6 +983,7 @@
 
             const poleLabel = POLE_LABELS[metierRP] || metierRP;
             const poleGFormLabel = POLE_GFORM_LABELS[metierRP] || metierRP;
+            const poleStyle = POLE_STYLE[metierRP] || { color: 0xD946EF, emoji: "🎯", short: poleLabel };
 
             const submitBtn = document.getElementById('submitBtn');
             submitBtn.disabled = true;
@@ -978,26 +991,41 @@
 
             const discordPayload = {
                 username: "URGENCE 13 — Bot Whitelist",
-                avatar_url: "https://images.unsplash.com/photo-1569336415962-a4bd9f69cd83?auto=format&fit=crop&w=150&q=80",
+                avatar_url: DISCORD_EMBED_THUMBNAIL,
                 embeds: [
                     {
-                        title: "📋 Nouvelle Candidature Whitelist",
-                        color: 16739894,
+                        author: {
+                            name: `Candidature — ${poleStyle.short}`,
+                            icon_url: DISCORD_EMBED_THUMBNAIL
+                        },
+                        title: `${poleStyle.emoji} Nouvelle Candidature Whitelist`,
+                        description: `**${charFirstName} ${charLastName}** souhaite rejoindre le pôle **${poleStyle.short}** d'Urgence 13 Simulation.`,
+                        color: poleStyle.color,
+                        thumbnail: { url: DISCORD_EMBED_THUMBNAIL },
+                        image: { url: DISCORD_EMBED_BANNER },
                         fields: [
                             { name: "👤 Pseudo Discord", value: `\`${discordName}\``, inline: true },
-                            { name: "🎂 Âge / Profession", value: `\`${charAge || "N/A"} ans\` — \`${charProfession || "N/A"}\``, inline: true },
-                            { name: "🚨 Forces de l'ordre / secours", value: forceOrdre === 'Oui' ? `Oui — \`${forcePoste || "N/A"}\`` : "Non", inline: true },
-                            { name: "🎯 Pôle Souhaité", value: `\`${poleLabel}\``, inline: false },
-                            { name: "🏷️ Personnage RP", value: `**${charFirstName} ${charLastName}**`, inline: false },
-                            { name: "🎂 Né(e) le / à", value: `\`${charDOB || "N/A"}\` à \`${charPOB || "N/A"}\``, inline: true },
-                            { name: "🚻 Sexe / Taille", value: `\`${charSexe}\` / \`${charHeight || "N/A"} cm\``, inline: true },
+                            { name: "🎂 Âge", value: `\`${charAge || "N/A"} ans\``, inline: true },
+                            { name: "💼 Profession / Étude", value: `\`${charProfession || "N/A"}\``, inline: true },
+
+                            { name: "\u200B", value: "**— Statut & Pôle —**", inline: false },
+                            { name: "🚨 Forces de l'ordre / secours", value: forceOrdre === 'Oui' ? `✅ Oui — \`${forcePoste || "N/A"}\`` : "❌ Non", inline: true },
+                            { name: "🎯 Pôle Souhaité", value: `${poleStyle.emoji} \`${poleLabel}\``, inline: true },
                             { name: "⭐ Expérience RP", value: `\`${experienceRP}\``, inline: true },
+
+                            { name: "\u200B", value: "**— Fiche Personnage RP —**", inline: false },
+                            { name: "🏷️ Nom / Prénom", value: `**${charFirstName} ${charLastName}**`, inline: true },
+                            { name: "🚻 Sexe / Taille", value: `\`${charSexe}\` — \`${charHeight || "N/A"} cm\``, inline: true },
+                            { name: "📍 Né(e) le / à", value: `\`${charDOB || "N/A"}\` à \`${charPOB || "N/A"}\``, inline: true },
+
+                            { name: "\u200B", value: "**— Motivations —**", inline: false },
                             { name: "📖 Motivations", value: motivations || "N/A", inline: false },
                             { name: "🙋 Pourquoi vous et pas un autre ?", value: pourquoiVous || "N/A", inline: false },
                             { name: "🧭 Pourquoi ce pôle ?", value: pourquoiPole || "N/A", inline: false }
                         ],
                         footer: {
-                            text: "Urgence 13 Simulation — Système de Whitelist Automatique"
+                            text: "Urgence 13 Simulation — Whitelist Automatique",
+                            icon_url: DISCORD_EMBED_THUMBNAIL
                         },
                         timestamp: new Date().toISOString()
                     }
