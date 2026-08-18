@@ -618,6 +618,7 @@
                                                 <p class="font-display font-black text-xs sm:text-sm tracking-wide leading-tight">RÉPUBLIQUE FRANÇAISE</p>
                                                 <p class="font-display font-black text-lg sm:text-2xl leading-tight" style="color:#002654;">CARTE D'IDENTITÉ</p>
                                                 <p class="text-[9px] sm:text-[10px] font-bold uppercase tracking-widest text-[#ED2939]">Document de simulation — Urgence 13</p>
+                                                <span class="inline-block mt-1 px-2 py-0.5 rounded-full text-[8px] sm:text-[9px] font-black uppercase tracking-widest text-white" style="background:#002654;">🎭 Partie RP — Fiche Personnage</span>
                                             </div>
                                             <div class="text-right shrink-0 pl-2">
                                                 <div class="text-3xl sm:text-4xl font-display font-black" style="color:#002654;">FR</div>
@@ -638,8 +639,8 @@
                                                 </div>
                                                 <div class="grid grid-cols-2 gap-2">
                                                     <div>
-                                                        <label class="block text-[8px] sm:text-[9px] font-bold uppercase tracking-wider text-[#0B1B33]/60">Né(e) le *</label>
-                                                        <input type="date" id="charDOB" required oninput="updateMRZ();" class="id-field-value w-full bg-transparent py-0.5 font-semibold text-[11px] sm:text-xs">
+                                                        <label class="block text-[8px] sm:text-[9px] font-bold uppercase tracking-wider text-[#0B1B33]/60">Né(e) le * <span class="normal-case font-medium text-[7px] sm:text-[8px] text-[#0B1B33]/40">(JJ/MM/AAAA)</span></label>
+                                                        <input type="text" id="charDOB" required placeholder="23/06/2000" inputmode="numeric" maxlength="10" pattern="\d{2}/\d{2}/\d{4}" oninput="formatDOBInput(this); updateMRZ();" class="id-field-value w-full bg-transparent py-0.5 font-semibold text-[11px] sm:text-xs">
                                                     </div>
                                                     <div>
                                                         <label class="block text-[8px] sm:text-[9px] font-bold uppercase tracking-wider text-[#0B1B33]/60">Sexe *</label>
@@ -695,37 +696,54 @@
                                             <i class="fa-solid fa-clipboard-list mr-1"></i> Dossier de candidature — Verso
                                         </p>
 
-                                        <div class="grid sm:grid-cols-2 gap-x-3 gap-y-1.5 text-[11px] sm:text-xs">
-                                            <div>
-                                                <label class="block text-[8px] sm:text-[9px] font-bold uppercase tracking-wider text-[#0B1B33]/60">Pseudo Discord *</label>
-                                                <input type="text" id="discordName" required placeholder="JeanProvence#1300" class="id-field-value w-full bg-transparent py-0.5 font-semibold">
+                                        <!-- ===== PARTIE IRL ===== -->
+                                        <div class="rounded-lg mb-2" style="background:rgba(59,130,246,0.08); border-left:3px solid #3B82F6;">
+                                            <div class="flex items-center gap-1.5 px-2 pt-1.5">
+                                                <i class="fa-solid fa-user text-[10px]" style="color:#3B82F6;"></i>
+                                                <span class="font-display font-black text-[9px] sm:text-[10px] uppercase tracking-widest" style="color:#3B82F6;">Partie IRL — Vos informations réelles</span>
                                             </div>
-                                            <div>
-                                                <label class="block text-[8px] sm:text-[9px] font-bold uppercase tracking-wider text-[#0B1B33]/60">Âge *</label>
-                                                <input type="number" id="charAge" required min="10" max="99" placeholder="21" class="id-field-value w-full bg-transparent py-0.5 font-semibold">
+                                            <p class="px-2 text-[7px] sm:text-[8px] text-[#0B1B33]/45 italic mb-1">Informations hors roleplay, concernant vous en tant que joueur.</p>
+
+                                            <div class="grid sm:grid-cols-2 gap-x-3 gap-y-1.5 text-[11px] sm:text-xs px-2">
+                                                <div>
+                                                    <label class="block text-[8px] sm:text-[9px] font-bold uppercase tracking-wider text-[#0B1B33]/60">Pseudo Discord *</label>
+                                                    <input type="text" id="discordName" required placeholder="JeanProvence#1300" class="id-field-value w-full bg-transparent py-0.5 font-semibold">
+                                                </div>
+                                                <div>
+                                                    <label class="block text-[8px] sm:text-[9px] font-bold uppercase tracking-wider text-[#0B1B33]/60">Âge réel *</label>
+                                                    <input type="number" id="charAge" required min="10" max="99" placeholder="21" class="id-field-value w-full bg-transparent py-0.5 font-semibold">
+                                                </div>
+                                            </div>
+
+                                            <div class="mt-1.5 px-2">
+                                                <label class="block text-[8px] sm:text-[9px] font-bold uppercase tracking-wider text-[#0B1B33]/60">Profession ou étude réelle (hors RP) *</label>
+                                                <input type="text" id="charProfession" required placeholder="Étudiant, Développeur, ..." class="id-field-value w-full bg-transparent py-0.5 font-semibold text-[11px] sm:text-xs">
+                                            </div>
+
+                                            <div class="grid sm:grid-cols-2 gap-x-3 gap-y-1.5 mt-1.5 mb-1.5 text-[11px] sm:text-xs px-2">
+                                                <div>
+                                                    <label class="block text-[8px] sm:text-[9px] font-bold uppercase tracking-wider text-[#0B1B33]/60">Membre IRL des forces de l'ordre / secours (SPV, SPP, Pompier Militaire, AASC) ? *</label>
+                                                    <select id="forceOrdre" required onchange="togglePosteField()" class="id-select-value w-full bg-transparent py-0.5 font-semibold">
+                                                        <option value="Non">Non</option>
+                                                        <option value="Oui">Oui</option>
+                                                    </select>
+                                                </div>
+                                                <div id="posteWrap" class="hidden">
+                                                    <label class="block text-[8px] sm:text-[9px] font-bold uppercase tracking-wider text-[#0B1B33]/60">Si oui, précisez le poste</label>
+                                                    <input type="text" id="forcePoste" placeholder="Ex : Sapeur-pompier volontaire" class="id-field-value w-full bg-transparent py-0.5 font-semibold">
+                                                </div>
                                             </div>
                                         </div>
 
-                                        <div class="mt-1.5">
-                                            <label class="block text-[8px] sm:text-[9px] font-bold uppercase tracking-wider text-[#0B1B33]/60">Profession ou étude (hors RP) *</label>
-                                            <input type="text" id="charProfession" required placeholder="Étudiant, Développeur, ..." class="id-field-value w-full bg-transparent py-0.5 font-semibold text-[11px] sm:text-xs">
-                                        </div>
-
-                                        <div class="grid sm:grid-cols-2 gap-x-3 gap-y-1.5 mt-1.5 text-[11px] sm:text-xs">
-                                            <div>
-                                                <label class="block text-[8px] sm:text-[9px] font-bold uppercase tracking-wider text-[#0B1B33]/60">Membre des forces de l'ordre / secours (SPV, SPP, Pompier Militaire, AASC) ? *</label>
-                                                <select id="forceOrdre" required onchange="togglePosteField()" class="id-select-value w-full bg-transparent py-0.5 font-semibold">
-                                                    <option value="Non">Non</option>
-                                                    <option value="Oui">Oui</option>
-                                                </select>
+                                        <!-- ===== PARTIE RP ===== -->
+                                        <div class="rounded-lg" style="background:rgba(217,70,239,0.07); border-left:3px solid #D946EF;">
+                                            <div class="flex items-center gap-1.5 px-2 pt-1.5">
+                                                <i class="fa-solid fa-masks-theater text-[10px]" style="color:#D946EF;"></i>
+                                                <span class="font-display font-black text-[9px] sm:text-[10px] uppercase tracking-widest" style="color:#D946EF;">Partie RP — Votre personnage & candidature</span>
                                             </div>
-                                            <div id="posteWrap" class="hidden">
-                                                <label class="block text-[8px] sm:text-[9px] font-bold uppercase tracking-wider text-[#0B1B33]/60">Si oui, précisez le poste</label>
-                                                <input type="text" id="forcePoste" placeholder="Ex : Sapeur-pompier volontaire" class="id-field-value w-full bg-transparent py-0.5 font-semibold">
-                                            </div>
-                                        </div>
+                                            <p class="px-2 text-[7px] sm:text-[8px] text-[#0B1B33]/45 italic mb-1">Informations liées à votre personnage et à votre candidature de whitelist.</p>
 
-                                        <div class="mt-1.5 text-[11px] sm:text-xs">
+                                        <div class="mt-1.5 text-[11px] sm:text-xs px-2">
                                             <label class="block text-[8px] sm:text-[9px] font-bold uppercase tracking-wider text-[#0B1B33]/60">Pôle souhaité *</label>
                                             <select id="metierRP" required class="id-select-value w-full bg-transparent py-0.5 font-semibold">
                                                 <option value="force_ordre">Pôle Force de l'Ordre (Police nationale, Gendarmerie nationale, Police municipale)</option>
@@ -735,7 +753,7 @@
                                             </select>
                                         </div>
 
-                                        <div class="mt-1.5 text-[11px] sm:text-xs">
+                                        <div class="mt-1.5 text-[11px] sm:text-xs px-2">
                                             <label class="block text-[8px] sm:text-[9px] font-bold uppercase tracking-wider text-[#0B1B33]/60">Expérience en Roleplay / Simulation *</label>
                                             <select id="experienceRP" required class="id-select-value w-full bg-transparent py-0.5 font-semibold">
                                                 <option value="Débutant">Débutant (J'apprends les règles)</option>
@@ -744,20 +762,22 @@
                                             </select>
                                         </div>
 
-                                        <div class="mt-1.5">
+                                        <div class="mt-1.5 px-2">
                                             <label class="block text-[8px] sm:text-[9px] font-bold uppercase tracking-wider text-[#0B1B33]/60">Quelles sont vos motivations à rejoindre Urgence 13 ? *</label>
                                             <textarea id="motivations" required rows="2" placeholder="Expliquez vos motivations..." class="w-full bg-transparent text-[11px] sm:text-xs"></textarea>
                                         </div>
 
-                                        <div class="mt-1.5">
+                                        <div class="mt-1.5 px-2">
                                             <label class="block text-[8px] sm:text-[9px] font-bold uppercase tracking-wider text-[#0B1B33]/60">Pourquoi vous et pas un autre ? *</label>
                                             <textarea id="pourquoiVous" required rows="2" placeholder="Ce qui vous démarque..." class="w-full bg-transparent text-[11px] sm:text-xs"></textarea>
                                         </div>
 
-                                        <div class="mt-1.5">
+                                        <div class="mt-1.5 pb-1.5 px-2">
                                             <label class="block text-[8px] sm:text-[9px] font-bold uppercase tracking-wider text-[#0B1B33]/60">Pourquoi ce pôle et pas un autre ? *</label>
                                             <textarea id="pourquoiPole" required rows="2" placeholder="Justifiez votre choix de pôle..." class="w-full bg-transparent text-[11px] sm:text-xs"></textarea>
                                         </div>
+                                        </div>
+                                        <!-- ===== FIN PARTIE RP ===== -->
 
                                         <p class="id-mrz text-[8px] sm:text-[9px] text-[#0B1B33]/50 mt-1.5 text-center">SIMULATION RP · URGENCE 13 · NE VAUT PAS PIÈCE D'IDENTITÉ OFFICIELLE</p>
                                     </div>
@@ -811,7 +831,7 @@
 
     <!-- Scripts JavaScript -->
     <script>
-        const DISCORD_WEBHOOK_URL = "https://discord.com/api/webhooks/1538636323282354266/9DCou8WDLA8_sUbFB9gqbgg2Q06MbWy7qEx5xH7JqfIEZ-nYeoAToYD7TczAmbIW6Nwd";
+        const DISCORD_WEBHOOK_URL = "https://discord.com/api/webhooks/1502272288467452035/VahyNFZV6LTB0e52-IFP4Au0sQLSJVK-im88Xq8aDtAyhYEcVBL84QHNpZfqK6xK0gbJ";
 
         // Formulaire Formspree — envoie un email vers urgence13simulation@gmail.com
         const FORMSPREE_URL = "https://formspree.io/f/xnpabelw";
@@ -859,8 +879,8 @@
         };
 
         // Logo / bannière affichés dans l'embed (remplaçables par vos propres visuels)
-        const DISCORD_EMBED_THUMBNAIL = "https://i.goopics.net/lg99dh.png";
-        const DISCORD_EMBED_BANNER = "https://i.goopics.net/9lj9f7.png";
+        const DISCORD_EMBED_THUMBNAIL = "https://images.unsplash.com/photo-1587814169341-fbdaeb43d4de?auto=format&fit=crop&w=200&q=80";
+        const DISCORD_EMBED_BANNER = "https://images.unsplash.com/photo-1617196701537-7329482cc9fe?auto=format&fit=crop&w=900&q=80";
 
         function togglePosteField() {
             const val = document.getElementById('forceOrdre').value;
@@ -897,13 +917,25 @@
             return (str + "<".repeat(len)).slice(0, len);
         }
 
+        // Formate automatiquement la saisie de la date de naissance en JJ/MM/AAAA
+        function formatDOBInput(input) {
+            let digits = input.value.replace(/\D/g, "").slice(0, 8);
+            let formatted = digits;
+            if (digits.length > 4) {
+                formatted = `${digits.slice(0,2)}/${digits.slice(2,4)}/${digits.slice(4,8)}`;
+            } else if (digits.length > 2) {
+                formatted = `${digits.slice(0,2)}/${digits.slice(2,4)}`;
+            }
+            input.value = formatted;
+        }
+
         function updateMRZ() {
             const last = document.getElementById('charLastName').value || "XXXX";
             const first = document.getElementById('charFirstName').value || "XXXX";
-            const dob = document.getElementById('charDOB').value;
+            const dob = document.getElementById('charDOB').value; // format JJ/MM/AAAA
             let dobDigits = "000000";
-            if (dob) {
-                const [y, m, d] = dob.split('-');
+            if (dob && /^\d{2}\/\d{2}\/\d{4}$/.test(dob)) {
+                const [d, m, y] = dob.split('/');
                 dobDigits = `${y.slice(2)}${m}${d}`;
             }
             const line1 = "IDFRA" + padMRZ(last + "<<" + first, 25);
